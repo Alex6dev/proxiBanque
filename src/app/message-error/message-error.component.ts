@@ -14,13 +14,13 @@ export class MessageErrorComponent {
   
   constructor(private messageErrorService:MessageErrorService){}
 
-  ngOnInit(){
+  ngOnInit():void{
     this.sub=this.messageErrorService.currentClientsObs$.subscribe(messageError=>{
       this.message=messageError;
     })
   }
 
-  clearMessage(){
+  clearMessage():void{
     this.messageErrorService.setMessageError({status:null,message:null});
   }
 

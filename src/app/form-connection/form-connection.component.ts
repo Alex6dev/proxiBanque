@@ -15,7 +15,7 @@ export class FormConnectionComponent {
   })
   constructor(private authService:AuthService, private router:Router){}
   
-  onSubmit(){
+  onSubmit():void{
     if(this.signupForm.valid){ 
       this.authService.authentification(this.signupForm.value,true)
     }

@@ -24,7 +24,7 @@ export class HeaderComponent {
     this.sub.unsubscribe;
   }
 
-  logout(){    
+  logout():void{    
     this.userService.logout();
     this.router.navigateByUrl('/')
   }

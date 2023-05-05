@@ -19,7 +19,7 @@ export class AddLoanComponent {
 
   ){}
 
-  ngOnInit(){
+  ngOnInit():void{
     this.activatedRoute.paramMap.subscribe({
       next:(p:ParamMap)=>{
         this.idClient=p.get('idClient');
@@ -33,7 +33,7 @@ export class AddLoanComponent {
     })
   }
 
-  quoteSend(){
+  quoteSend():void{
     if(this.newLoan.valid)
       this.loanService.quoteSend(this.newLoan,this.idClient);
     else{

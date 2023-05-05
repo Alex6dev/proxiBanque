@@ -47,7 +47,7 @@ export class TransferPageComponent {
     })
 
   }
-  submitFormTransfert(){
+  submitFormTransfert():void{
     if(this.transferForm.valid) {
       if(confirm(`
         Voulez-vous effectuer un virement d'un montant de ${this.transferForm.value.montant} euros
@@ -64,12 +64,10 @@ export class TransferPageComponent {
       this.messageErrorService.setMessageError({ status:null,
         message:"Le numéro du compte émetteur et celui du compte bénéficiaire sont obligatoires et le montant doit être positif"})
     }
-    
   }
  
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
-
 
 }

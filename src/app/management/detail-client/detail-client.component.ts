@@ -28,7 +28,7 @@ export class DetailClientComponent {
     
   }
 
-  ngOnInit(){
+  ngOnInit():void{
     this.activatedRoute.paramMap.subscribe({
       next: (p:ParamMap) => {
         const id= p.get('idClient');

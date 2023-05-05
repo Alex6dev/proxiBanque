@@ -22,7 +22,7 @@ export class UpdateClientComponent {
 
   
 
-  ngOnInit(){
+  ngOnInit():void{
     this.activatedRoute.paramMap.subscribe({
       next: (p:ParamMap) => {
         this.idClient=p.get('idClient');

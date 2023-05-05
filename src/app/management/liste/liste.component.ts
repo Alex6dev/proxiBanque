@@ -26,7 +26,7 @@ export class ListeComponent {
   ){}
 
 
-  ngOnInit(){
+  ngOnInit():void{
     
     this.sub=this.userService.currentUserObs$.subscribe((user:User)=>{
       this.userCurrent=user
@@ -42,11 +42,9 @@ export class ListeComponent {
     })
 }
 
-  ngOnDestroy(){
+  ngOnDestroy():void{
     this.sub.unsubscribe();
     this.sub2.unsubscribe();
   }
-
-  
 
 }

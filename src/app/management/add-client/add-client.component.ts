@@ -18,7 +18,7 @@ export class AddClientComponent {
   ) {}
 
 
-  ngOnInit(){
+  ngOnInit():void{
     this.newClient= new FormGroup({
       name:new FormControl(null, [Validators.required,Validators.pattern('[a-zA-Z]*')]),
       firstName: new FormControl(null, [Validators.required,Validators.pattern('[a-zA-Z]*')]),
@@ -28,7 +28,7 @@ export class AddClientComponent {
       phone:new FormControl(null, [Validators.required]),
     })
   }
-  onSubmit() {    
+  onSubmit() :void{    
     if(this.newClient.valid)
       this.clientsService.addClient(this.newClient, window.sessionStorage.getItem(ACCESS_TOKEN_ID));
     else{

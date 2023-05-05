@@ -28,7 +28,7 @@ import { AddLoanComponent } from './add-loan/add-loan.component';
 
   ],
   imports: [
-    CommonModule,MANAGEMENT_ROUTING, HttpClientModule, FormsModule, ReactiveFormsModule
+    CommonModule,MANAGEMENT_ROUTING, HttpClientModule, ReactiveFormsModule
   ]
 })
 export class ManagementModule { }
