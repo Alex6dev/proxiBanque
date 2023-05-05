@@ -1,0 +1,26 @@
+<h2 class="m-5">Simulation du Prêt</h2>
+<form [formGroup]="newLoan" (ngSubmit)="quoteSend()" class="well form-horizontal" >
+    <div class="form-group">
+        <label class="col-md-4 control-label">Montant du prêt</label>
+        <input formControlName="initialAmount" type="number" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label">Durée (en mois)</label>
+        <input formControlName="duration" type="number" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label">Intérêt</label>
+        <input formControlName="interestRate" type="number" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label">Intérêt pour l'assurance</label>
+        <input formControlName="insuranceRate" type="number" class="form-control">
+    </div>
+
+    <br>
+    <button [disabled]="newLoan.invalid" type="submit" class="btn btn-info">Etablir le Devis</button>
+
+</form>

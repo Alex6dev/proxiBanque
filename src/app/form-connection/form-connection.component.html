@@ -1,0 +1,11 @@
+<div>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <label for="identifiant" >* Identifiant : </label>
+        <input type="text" class="form-control" formControlName="identifiant" required>
+
+        <label for="mdp">* Mot de passe:</label>
+        <input type="password" class="form-control" formControlName="mdp" required>
+
+        <button type="submit" class="btn btn-primary mt-4" [disabled]="signupForm.invalid">Se connecter</button>
+    </form>
+</div>

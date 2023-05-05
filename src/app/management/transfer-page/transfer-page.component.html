@@ -1,0 +1,22 @@
+<h1>Virement</h1>
+<form [formGroup]="transferForm" (ngSubmit)="submitFormTransfert()">
+    <div class="mb-3 column">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Saisir le numéro du compte émetteur</label>
+        <div class="col-sm-10"> 
+          <input formControlName="emeteurAccount" type="number" class="form-control">
+        </div>
+      </div>
+      <div class="mb-3 column">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Saisir le numéro du compte bénéficiaire</label>
+        <div class="col-sm-10"> 
+          <input formControlName="receiverAccount" type="number" class="form-control">  
+        </div>
+      </div>
+      <div class="mb-3 column">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Saisir le montant</label>
+        <div class="col-sm-5"> 
+          <input formControlName="montant" type="number" class="form-control">  
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary"[disabled]="transferForm.invalid">Effectuer le virement</button>
+</form>

@@ -1,0 +1,4 @@
+<div class="d-flex justify-content-between position-absolute top-50 start-50 translate-middle alert alert-danger w-25 h-25" *ngIf="message.message!=null">
+    <p class="me-3">{{message.message}}</p>
+    <button type="button" class="px-2 btn btn-primary" (click)="clearMessage()">x</button> 
+</div>

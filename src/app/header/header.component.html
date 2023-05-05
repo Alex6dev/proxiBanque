@@ -1,0 +1,50 @@
+<header *ngIf="user.typeUser=='ADVISOR'">
+    <div class="header-top">
+        <h1>ProxiBanque</h1>
+        <div *ngIf="user.user!= null">
+            <h5>{{user.user.name + " " + user.user.firstName + ", Conseiller"}}</h5>
+            <button  class="" (click)="logout()" class="btn btn-primary">Déconnexion</button>
+        </div>
+    </div>
+    <nav class="nav nav-tabs" *ngIf="user.user!=null">
+        <li class="nav-link">
+            <a class="nav-link " routerLink="/management/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">
+                Dashbord
+            </a>
+        </li>
+        <li class="nav-link">
+            <a class="nav-link " routerLink="/management/transfer" routerLinkActive="active">
+                Virement
+            </a>
+        </li>
+        <li class="nav-link">
+            <a class="nav-link " routerLink="/management/audit" routerLinkActive="active">
+                Audit
+            </a>
+        </li>
+    </nav>
+
+</header>
+<header *ngIf="user.typeUser=='MANAGER'">
+    <div class="header-top">
+        <h1>ProxiBanque</h1>
+        <div *ngIf="user.user!= null">
+            <h5>{{user.user.name + " " + user.user.firstName + ", Gérant"}}</h5>
+            <button  class="" (click)="logout()" class="btn btn-primary">Déconnexion</button>
+        </div>
+    </div>
+    <nav class="nav nav-tabs" *ngIf="user.user!=null">
+        <li class="nav-link">
+            <a class="nav-link " routerLink="/management/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">
+                Dashbord
+            </a>
+        </li>
+        
+        <li class="nav-link">
+            <a class="nav-link " routerLink="/management/audit" routerLinkActive="active">
+                Audit
+            </a>
+        </li>
+    </nav>
+</header>
+

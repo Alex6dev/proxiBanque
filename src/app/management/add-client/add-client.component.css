@@ -1,0 +1,12 @@
+form {
+    max-width: 500px;
+    margin: 5% auto;
+}
+
+form label {
+    margin-left: 2%;
+}
+
+form button {
+    width: 150px;
+}

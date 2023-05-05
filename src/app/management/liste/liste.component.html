@@ -1,0 +1,61 @@
+<div *ngIf="userCurrent.typeUser=='ADVISOR'">
+  <h2>Liste des clients</h2>
+  
+  <button routerLink="/management/client/addClient" type="button" class="btn btn-primary createClientButton">Créer un client</button>
+  <div class="card my-5 globalDiv">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Code postal</th>
+            <th scope="col">Ville</th>
+            <th scope="col">Téléphone</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of clients ">
+            <td>{{ client.name }}</td>
+            <td>{{ client.firstName }}</td>
+            <td>{{ client.address }}</td>
+            <td>{{ client.postcode }}</td>
+            <td>{{ client.city }}</td>
+            <td>{{ client.phone }}</td>
+            <td>
+              <button [routerLink]="['/','management','client',client.id]"  type="button" class="btn btn-primary">Profil du client</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div *ngIf="userCurrent.typeUser=='MANAGER'">
+  <h2>Liste des conseillers</h2>
+  
+  <div class="card my-5 globalDiv">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Mail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let advisor of advisors ">
+            <td>{{ advisor.name }}</td>
+            <td>{{ advisor.firstName }}</td>
+            <td>{{ advisor.phone }}</td>
+            <td>{{ advisor.mail }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

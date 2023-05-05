@@ -1,0 +1,130 @@
+<div class="d-flex justify-content-center mainDiv">
+    <div class="col-lg-8 push-lg-4">
+        <div class="tab-content p-b-3">
+            <div class="tab-pane active" id="profile">
+                <div class="row">
+                    <div class="buttonsDiv">
+                        <button routerLink="/management/dashboard" type="button"
+                            class="btn btn-primary btn-sm">Retour</button>
+                        <button routerLink="edit" type="button"
+                            class="btn btn-secondary editClientButton">Editer</button>
+                        <button (click)="deleteClient()" type="button"
+                            class="btn btn-danger deleteClientButton">Supprimer</button>
+                    </div>
+                    <div class="col-md-12">
+                        <h2 class="m-t-2"><span class="fa fa-clock-o ion-clock pull-xs-right"></span> Informations</h2>
+                        <table class="table table-hover table-striped informationsTable">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <strong>Nom :</strong> {{ oneClient.name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Prénom :</strong> {{ oneClient.firstName }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Adresse :</strong> {{ oneClient.address}}
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Code Postal :</strong> {{ oneClient.postcode }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Ville :</strong> {{ oneClient.city }}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Téléphone :</strong> {{ oneClient.phone }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                        <h2 class="mt-5">Comptes</h2>
+                        <table class="table table-hover table-striped accountsTable">
+                            <thead>
+                                <tr>
+                                    <th>Numéro de compte</th>
+                                    <th>Solde</th>
+                                    <th>Date d'ouverture</th>
+                                    <th>Découvert autorisé</th>
+                                    <th>Type de carte</th>
+                                    <th>Taux d'intérêt</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="accountsClient.length==0">
+                                <tr>
+                                    <td colspan="7"> Ce client n'a pas de compte</td>
+                                </tr>
+                            </tbody>
+
+                            <tbody *ngIf="accountsClient.length!=0">
+                                <tr *ngFor="let account of accountsClient">
+                                    <td>{{account.accountNb}}</td>
+                                    <td>{{account.balance}}</td>
+                                    <td>{{account.openingDate}}</td>
+                                    <td>{{account.overdraft}}</td>
+                                    <td>{{account.card}}</td>
+                                    <td>{{account.interest}}</td>
+                                    <td><button class="btn btn-warning"
+                                            [routerLink]="['/','management','transfer',account.accountNb]">Faire un
+                                            virement</button></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                        <h2 class="mt-5" >Prêt</h2>
+                        <button type="button" [routerLink]="['/','management','addLoan',oneClient.id]" class="btn btn-warning">Faire devis pour un prêt</button>
+                        <table class="table table-hover table-striped loansTable" >
+                            <thead>
+                                <tr>
+                                    <th>Numéro de prêt</th>
+                                    <th>Montant initial</th>
+                                    <th>Solde du prêt</th>
+                                    <th>Date de début</th>
+                                    <th>Durée</th>
+                                    <th>Taux d'intérêt</th>
+                                    <th>Taux d'assurance</th>
+                                    <th>Statut</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="loans.length==0">
+                                <tr>
+                                    <td colspan="7"> Ce client n'a pas de prêt en cours</td>
+                                </tr>
+                            </tbody>
+
+                            <tbody *ngIf="loans.length!=0">
+                                <tr *ngFor="let loan of loans">
+                                    <td>{{loan.id}}</td>
+                                    <td>{{loan.initialAmount}}</td>
+                                    <td>{{loan.remainingAmount}}</td>
+                                    <td>{{loan.startOfLoan | date: "yyyy-MM-dd"}}</td>
+                                    <td>{{(loan.duration / 2629800000).toFixed(0) + " mois"}}</td>
+                                    <td>{{loan.interestRate}}</td>
+                                    <td>{{loan.insuranceRate}}</td>
+                                    <td>{{ loan.accept ? "Accordé" : "En attente" }}</td>
+                                    <td *ngIf="loan.accept!=true"><button class="btn btn-warning"
+                                            (click)="acceptLoan(loan)">Valider le prêt</button></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+.header-top {
+    margin-top: 2%;
+}
+
+.header-top h1 {
+    text-align: center;
+    font-weight: 700;
+}
+
+.header-top div {
+    display: flex;
+    height: 40px;
+}
+
+h5 {
+    line-height: 40px;
+    padding-left: 15%;
+    padding-right: 2%;
+}
+
+nav {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    min-width: 15%;
+    text-align: center;
+}

@@ -1,0 +1,30 @@
+<ng-container *ngIf="audit">
+    <h2 class="">Liste des comptes</h2>
+    <div class ="container">
+        <p>Il y a {{ audit.numberOfOverdrawnAccounts }} comptes à découvert sur un total de {{ audit.numberOfAccounts }} comptes, 
+            soit {{ (audit.numberOfOverdrawnAccounts / audit.numberOfAccounts * 100).toFixed(2) }}%.</p>
+        <p>Le montant total des découvert s'élève à {{ audit.totalOverdraft }}€</p>
+        <div class = "card">
+            <div class = "card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <th>No</th>
+                        <th>Solde</th>
+                        <th>Date d'ouverture</th>
+                        <th>Découvert autorisé</th>
+                        <th>Carte</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor = "let account of audit.overdrawnAccounts">
+                            <td> {{ account.accountNb}}</td>
+                            <td> {{ account.balance }}</td>
+                            <td> {{ account.openingDate }}</td>
+                            <td> {{ account.overdraft ? account.overdraft : "0" }}</td>
+                            <td> {{ account.card ? account.card : "Retrait" }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</ng-container>
