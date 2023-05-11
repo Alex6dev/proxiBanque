@@ -23,22 +23,22 @@ export class LoanService {
     private messageErrorService:MessageErrorService
   ) { }
   
-  setCurrentLoans(loans:Loan[]){
+  setCurrentLoans(loans:Loan[]):void{
     this.currentLoans.next(loans);
   }
 
-  getAllLoanByIdClient(idClient:string){
+  getAllLoanByIdClient(idClient:string):void{
     this.http.get(this.urlGetAllLoanByIdClient+idClient).subscribe({
       next:((value:Loan[])=>{
         this.setCurrentLoans(value);
       }),
       error:(err)=>{
-        this.messageErrorService.setMessageError({status:err.status,message:err.error})
+        this.messageErrorService.setMessageError( {status:err.status,message:err.error} )
       }
     })
   }
 
-  acceptLoan(acceptLoanDto:AcceptLoanDto){
+  acceptLoan(acceptLoanDto:AcceptLoanDto):void{
     acceptLoanDto.loan.accept=true;
     this.http.put(this.urlAcceptLoan,acceptLoanDto).subscribe({
       next:(value:Loan)=>{
@@ -48,12 +48,12 @@ export class LoanService {
         this.setCurrentLoans(loans);
       },
       error:(err)=>{
-        this.messageErrorService.setMessageError({status:err.status,message:err.error})
+        this.messageErrorService.setMessageError( {status:err.status,message:err.error} )
       }
     })
   }
 
-  quoteSend(formLoan:FormGroup,idClient:string){
+  quoteSend(formLoan:FormGroup,idClient:string):void{
     const body = JSON.parse(`
     {
       "initialAmount":"${formLoan.value.initialAmount}",
@@ -71,7 +71,7 @@ export class LoanService {
         this.router.navigate(['/','management','client',idClient])
       },
       error:(err)=>{
-        this.messageErrorService.setMessageError({status:err.status,message:err.error})
+        this.messageErrorService.setMessageError( {status:err.status,message:err.error} )
       }
     })
   }

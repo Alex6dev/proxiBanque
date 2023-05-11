@@ -27,9 +27,8 @@ export class AdvisorsService {
         this.setAdvisors(value);
       },
       error:(err)=>{
-        this.messageErrorService.setMessageError({status:err.status,message:err.error})
+        this.messageErrorService.setMessageError( {status:err.status,message:err.error} )
       }
-
     })
   }
 }

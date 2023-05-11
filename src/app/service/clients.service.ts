@@ -26,38 +26,38 @@ export class ClientsService {
   ) {}
 
 
-  getClientById(id) {
+  getClientById(id:string) :Client{
     return this.currentClients.value.find((element) => element.id == id);
   }
   setCurentClients(clients:Client[]){
     this.currentClients.next(clients)
   }
 
-  getListClient(idUser:string){
+  getListClient(idUser:string):void{
     
     this.http.post<Client[]>(this.urlClients,Number.parseInt(idUser)).subscribe({
       next:(value:Client[])=>{
         this.setCurentClients(value);
       },
       error:(err)=>{
-        this.messageErrorService.setMessageError({status:err.status,message:err.error})
+        this.messageErrorService.setMessageError( {status:err.status,message:err.error} )
       }
     })
   }
 
-  deleteClient(id) {
+  deleteClient(id:string) :void{
     this.http.delete(this.urlClient+"/"+id).subscribe({
       next:( ) => {
         this.getListClient(window.sessionStorage.getItem(ACCESS_TOKEN_ID))
         this.router.navigateByUrl('/management/dashboard')
       },
       error:(err)=>{
-        this.messageErrorService.setMessageError({status:err.status,message:err.error})
+        this.messageErrorService.setMessageError( {status:err.status,message:err.error} )
       }
     })
   }
 
-  addClient(newClient:FormGroup,idUser:string) {
+  addClient(newClient:FormGroup,idUser:string) :void{
     const body = JSON.parse(`
     {
       "name":"${newClient.value.name}",
@@ -78,12 +78,12 @@ export class ClientsService {
         this.router.navigateByUrl('/management/dashboard');
       },
       error:(err)=>{
-        this.messageErrorService.setMessageError({status:err.status,message:err.error})
+        this.messageErrorService.setMessageError( {status:err.status,message:err.error} )
       }
     });
   }
 
-  updateClient(client:FormGroup,idUser:string){ 
+  updateClient(client:FormGroup,idUser:string):void{ 
     const body = JSON.parse(`
     {
       "id":"${client.value.id}",
@@ -105,7 +105,7 @@ export class ClientsService {
         this.router.navigate(['/','management','client',client.value.id])
       },
       error:(err)=>{
-        this.messageErrorService.setMessageError({status:err.status,message:err.error})
+        this.messageErrorService.setMessageError( {status:err.status,message:err.error} )
       }
     })
   }

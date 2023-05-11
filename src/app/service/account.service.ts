@@ -6,9 +6,6 @@ import { FormTransfert } from '../interface/form';
 import { Router } from '@angular/router';
 import { MessageErrorService } from '../message-error.service';
 import { Audit } from '../interface/audit';
-import { User } from 'src/app/interface/user';
-import { UserService } from './user.service';
-import { Subscription } from 'rxjs';
 import { environement } from 'src/environements/environement';
 
 @Injectable({
@@ -16,16 +13,12 @@ import { environement } from 'src/environements/environement';
 })
 export class AccountService {
 
-  private baseUrl = "http://localhost:8080/api/accounts/audit";
+  private urlAudit = environement.apiUrl+"/api/accounts/audit";
   private urlTransfer = environement.apiUrl + "/api/account/";
   private urlGetAllAccountByIdClient = environement.apiUrl + "/api/accounts";
-  isManager: boolean;
-  currentAdvisorId: number;
-  sub: Subscription = new Subscription();
 
   constructor(
     private http: HttpClient,
-    private userService: UserService,
     private router: Router,
     private messageErrorService: MessageErrorService
   ) { }
@@ -37,10 +30,7 @@ export class AccountService {
           subscriber.next(value);
         },
         error: (err) => {
-          this.messageErrorService.setMessageError({
-            status: err.status,
-            message: err.error
-          })
+          this.messageErrorService.setMessageError( {status: err.status,message: err.error} )
         }
       })
     })
@@ -58,26 +48,33 @@ export class AccountService {
         this.router.navigateByUrl('/management/dashboard');
       },
       error: (err) => {
-        this.messageErrorService.setMessageError({
-          status: err.status,
-          message: err.error
-        })
+        this.messageErrorService.setMessageError( {status: err.status,message: err.error} )
       }
     })
   }
 
-  getAudit(): Observable<Audit> {
-    this.sub = this.userService.currentUserObs$.subscribe((user: User) => {
-      if (user.typeUser == "ADVISOR") {
-        this.currentAdvisorId = Number(user.user.id);
+  getAudit(idAvisor:string|null): Observable<Audit> {
+    return new Observable(subscriber => {
+      if ( idAvisor==null) {
+        this.http.get<Audit>(`${this.urlAudit}`).subscribe({
+          next:(value)=>{
+            subscriber.next(value);
+          },
+          error:(err)=>{
+            this.messageErrorService.setMessageError( {status: err.status,message: err.error} )
+          }
+        });
       } else {
-        this.currentAdvisorId = -1;
+        this.http.post<Audit>(`${this.urlAudit}`,idAvisor).subscribe({
+          next:(value)=>{
+            subscriber.next(value);
+          },
+          error:(err)=>{
+            this.messageErrorService.setMessageError( {status: err.status,message: err.error} )
+          }
+        });
       }
+      
     })
-    if (this.currentAdvisorId < 0) {
-      return this.http.get<Audit>(`${this.baseUrl}`);
-    } else {
-      return this.http.post<Audit>(`${this.baseUrl}`, this.currentAdvisorId);
-    }
   }
 }
