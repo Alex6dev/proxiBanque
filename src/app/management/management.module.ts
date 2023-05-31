@@ -8,7 +8,7 @@ import { ListeComponent } from './liste/liste.component';
 import { DetailClientComponent } from './detail-client/detail-client.component';
 import {  HttpClientModule } from '@angular/common/http';
 import { UpdateClientComponent } from './update-client/update-client.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AddClientComponent } from './add-client/add-client.component';
 import { AddLoanComponent } from './add-loan/add-loan.component';
 

@@ -13,7 +13,10 @@ export class FormConnectionComponent {
     identifiant: new FormControl(null, Validators.required),
     mdp: new FormControl(null, Validators.required)
   })
-  constructor(private authService:AuthService, private router:Router){}
+  constructor(
+    private authService:AuthService, 
+    private router:Router
+  ){}
   
   onSubmit():void{
     if(this.signupForm.valid){ 

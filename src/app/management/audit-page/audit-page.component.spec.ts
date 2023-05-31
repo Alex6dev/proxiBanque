@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuditPageComponent } from './audit-page.component';
+import { ManagementModule } from '../management.module';
 
 describe('AuditPageComponent', () => {
   let component: AuditPageComponent;
@@ -8,7 +9,8 @@ describe('AuditPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuditPageComponent ]
+      declarations: [ AuditPageComponent ],
+      imports:[ManagementModule]
     })
     .compileComponents();
 

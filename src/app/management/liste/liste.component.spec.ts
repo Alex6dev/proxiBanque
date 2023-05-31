@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListeComponent } from './liste.component';
+import { ManagementModule } from '../management.module';
 
 describe('ListeComponent', () => {
   let component: ListeComponent;
@@ -8,7 +9,8 @@ describe('ListeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListeComponent ]
+      declarations: [ ListeComponent ],
+      imports:[ManagementModule]
     })
     .compileComponents();
 

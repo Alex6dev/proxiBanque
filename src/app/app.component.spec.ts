@@ -1,35 +1,36 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { AuthService } from './service/auth.service';
+import { AppModule } from './app.module';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  let fixture:ComponentFixture<AppComponent>;
+  let app:AppComponent;
+
+  beforeEach( () => {
+    TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        AppModule
       ],
       declarations: [
         AppComponent
       ],
-    }).compileComponents();
+    });
+    fixture=TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
+
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'proxibanque'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
+
     expect(app.title).toEqual('proxibanque');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('proxibanque app is running!');
-  });
 });

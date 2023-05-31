@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TransferPageComponent } from './transfer-page.component';
+import { ManagementModule } from '../management.module';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('TransferPageComponent', () => {
   let component: TransferPageComponent;
@@ -8,7 +11,14 @@ describe('TransferPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TransferPageComponent ]
+      declarations: [ TransferPageComponent ],
+      imports:[ManagementModule],
+      providers:[{
+        provide:ActivatedRoute,
+        useValue:{
+          paramMap:of({idClient:"111"})
+        }
+      }]
     })
     .compileComponents();
 

@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UpdateClientComponent } from './update-client.component';
+import { ManagementModule } from '../management.module';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('UpdateClientComponent', () => {
   let component: UpdateClientComponent;
@@ -8,7 +11,14 @@ describe('UpdateClientComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UpdateClientComponent ]
+      declarations: [ UpdateClientComponent ],
+      imports:[ManagementModule],
+      providers:[{
+        provide:ActivatedRoute,
+        useValue:{
+          paramMap:of({idClient:111})
+        }
+      }]
     })
     .compileComponents();
 

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConnectionComponent } from './connection.component';
+import { AppModule } from '../app.module';
 
 describe('ConnectionComponent', () => {
   let component: ConnectionComponent;
@@ -8,7 +9,8 @@ describe('ConnectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConnectionComponent ]
+      declarations: [ ConnectionComponent ],
+      imports:[AppModule]
     })
     .compileComponents();
 
